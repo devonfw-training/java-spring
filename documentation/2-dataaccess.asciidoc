@@ -73,7 +73,18 @@ During the exercise you can extend this testdata SQL as you like.
 Run application and check that the data you provided is inserted into the database.
 
 === Create JUnits
-Now you can create JUnit tests like this:
+Now you can create JUnit tests.
+First, we fix our `app/core/pom.xml` by replacing `devon4j-test` dependency with this:
+```
+    <dependency>
+      <groupId>com.devonfw.java.modules</groupId>
+      <artifactId>devon4j-test-jpa</artifactId>
+      <version>3.1.0</version>
+      <scope>test</scope>
+    </dependency>
+```
+
+Now, we can create simple JUnits for our repositories like this:
 
 [source,sql]
 ----
