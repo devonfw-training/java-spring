@@ -1,0 +1,100 @@
+:toc: macro
+toc::[]
+
+= Data Access Layer
+
+In this chapter we are going to create the `dataaccess` layer of our app.
+We create the entities and repositories as well as the corresponding database schema and initial data.
+
+== Create Entities
+
+After you have created your own link:0-setup.asciidoc[devon4j app creation], we are going to create our first app component.
+In your `core` module create the package `org.example.demo.ordermanagement.dataaccess.api` (in `src/main/java`).
+Inside this package create the following data-model:
+
+image::images/Entities.png[width="80%"]
+
+== Create Repositories
+
+For each entity create a corresponding repository in the package `org.example.demo.ordermanagement.dataaccess.api.repo`.
+
+=== Create DDL
+
+Create flyway SQL files in `core/src/main/resources/db/migration/1.0` to define your https://de.wikipedia.org/wiki/Data_Definition_Language[DDL] as following:
+
+Create file `V0005__Create_Order.sql` with this content:
+[source,sql]
+----
+CREATE TABLE RESTAURANT_ORDER (
+  ID                  BIGINT NOT NULL AUTO_INCREMENT,
+  MODIFICATIONCOUNTER INTEGER NOT NULL,
+  PRICE               DECIMAL(5, 2) NOT NULL,
+  CREATION_DATE       TIMESTAMP WITH TIME ZONE NOT NULL,
+  PAYMENT_DATE        TIMESTAMP WITH TIME ZONE,
+  STATUS              VARCHAR(10) NOT NULL,
+  PRIMARY KEY (ID)
+);
+----
+
+Create file `V0006__Create_Item.sql` with this content:
+[source,sql]
+----
+CREATE TABLE ITEM (
+  ID                  BIGINT NOT NULL AUTO_INCREMENT,
+  MODIFICATIONCOUNTER INTEGER NOT NULL,
+  CREATION_DATE       TIMESTAMP WITH TIME ZONE NOT NULL,
+  NAME                VARCHAR(255) NOT NULL,
+  PRICE               DECIMAL(5, 2) NOT NULL,
+  ORDER_ID            BIGINT NOT NULL,
+  PRIMARY KEY (ID),
+  FOREIGN KEY (ORDER_ID) REFERENCES RESTAURANT_ORDER(ID)
+);
+----
+
+Please note that you can delete the `core/src/main/resources/db/type` subfolders except for `h2` if you like as we are just using H2 DB for simplicity.
+In a real project you would use H2 DB only for testing (in JUnits and have flyway SQLs for `h2` in `core/src/test/resources/db/test/`) and use a real DB (SAP Hana, Oracle, etc.) for main usage.
+
+You can check that your schema is valid running `SpringBootApp`.
+Surely you will need to add some JPA annotations to make your entities work with this DDL.
+
+==== Create Test-data
+We can easily provide test-data to our app so we do not have to test with an empty DB.
+This can easily be done with another Flyway SQL script.
+In a real project, we would create that in `core/src/test/resources/db/` but for simplicity to have it also when we start our app regular (not via JUnit), we simply also add it to `core/src/main/resources/db/migration/1.0`.
+Create file `V0007__Insert_Testdata.sql` with this content:
+[source,sql]
+----
+INSERT INTO RESTAURANT_ORDER(ID, MODIFICATIONCOUNTER, CREATION_DATE, STATUS, PRICE) VALUES (1, 0, CURRENT_TIMESTAMP, 'OPEN', 25.50);
+INSERT INTO ITEM(ID, MODIFICATIONCOUNTER, CREATION_DATE, NAME, PRICE, ORDER_ID) VALUES (1, 0, CURRENT_TIMESTAMP, 'Spaghetti Bolognese', 12.50, 1);
+INSERT INTO ITEM(ID, MODIFICATIONCOUNTER, CREATION_DATE, NAME, PRICE, ORDER_ID) VALUES (2, 0, CURRENT_TIMESTAMP, 'Red Wine: Capezzana, Conti Contini Sangiovese Toscana', 13.00, 1);
+----
+
+During the exercise you can extend this testdata SQL as you like.
+Run application and check that the data you provided is inserted into the database.
+
+=== Create JUnits
+Now you can create JUnit tests like this:
+
+[source,sql]
+----
+@SpringBootTest(classes = SpringBootApplication.class, webEnvironment = WebEnvironment.MOCK)
+public class OrderRepositoryTest extends ComponentDbTest {
+
+  @Inject
+  private OrderRepository orderRepository;
+
+  @Test
+  public void testFindOrder() {
+
+    // given
+    Long orderId = Long.valueOf(1L);
+    // when
+    OrderEntity order = this.orderRepository.find(orderId);
+    // then
+    assertThat(order).isNotNull();
+    assertThat(order.getPrice()).isEqualTo(BigDecimal.valueOf(25.5));
+    // ...
+  }
+
+}
+----
