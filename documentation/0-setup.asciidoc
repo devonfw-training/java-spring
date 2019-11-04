@@ -1,0 +1,39 @@
+:toc: macro
+toc::[]
+
+= Setup
+
+Install https://github.com/devonfw/ide[devonfw-ide]:
+
+* Install https://git-scm.com/downloads[git] if not already installed (download and run installer)
+* Create the folder `C:\Projects\devonfw-training` (if you do not have Windows, use `projects/devonfw-training` in root or if not permitted in home).
+* Download `devonfw-ide-scripts` package from https://repo1.maven.org/maven2/com/devonfw/tools/ide/devon-ide-scripts/3.0.0-beta25/devon-ide-scripts-3.0.0-beta25.tar.gz[here]
+* Extract the contents of `devonfw-ide-scripts` package into the above created folder `devonfw-training`. The contents of the package shall be directly in the folder `devonfw-training` without any sub-folder such as `devonfw-ide-scripts`. If you have no idea how to do this, install https://www.7-zip.org/download.html[7-Zip] and use it to extract.
+* Run the `setup` script (on Windows `setup.bat`) from `devonfw-training` folder.
+* Enter this settings-URL: https://github.com/devonfw-training/java-foundations-settings.git
+* Read and confirm the terms-of-use.
+* wait until the setup process has completed.
+
+= Create Project
+
+Now we create a new `devon4j` project:
+
+* Go to folder `workspaces/main` in `devonfw-training`.
+* In Windows-Explorer right-click it and select `Git Bash Here`.
+* In your `workspaces/main` folder run this command (NOTE: the archetypeVersion is only temporary due to a bug in `devon4j:3.2.0` release with JUnit 5 and `spring-test`):
++
+```
+devon java create org.example.app -DarchetypeVersion=3.1.0
+```
+* `cd app`
+* `mvn clean install`
+
+= Import into Eclipse
+
+Next, we import the new `app` project into our Eclipse IDE:
+
+* `devon eclipse`
+* In Eclipse `Import` as `Existing Maven Project`, there click `Browse` and choose your generated `app` folder.
+* Now select `SpringBootApp` from `app-core` and do `Run As` with option `Java Application`.
+* Visit http://localhost:8081 in your browser
+* Login as `waiter` with same password (see `BaseWebSecurityConfig.configureGlobal`).
