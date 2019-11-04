@@ -14,7 +14,7 @@ Install https://github.com/devonfw/ide[devonfw-ide]:
 * Read and confirm the terms-of-use.
 * wait until the setup process has completed.
 
-= Create Project
+== Create Project
 
 Now we create a new `devon4j` project:
 
@@ -28,7 +28,7 @@ devon java create org.example.app
 * `cd app`
 * `mvn clean install`
 
-= Import into Eclipse
+== Import into Eclipse
 
 Next, we import the new `app` project into our Eclipse IDE:
 
@@ -38,7 +38,7 @@ Next, we import the new `app` project into our Eclipse IDE:
 * Visit http://localhost:8081 in your browser
 * Login as `waiter` with same password (see `BaseWebSecurityConfig.configureGlobal`).
 
-= JUnit5 workaround
+== JUnit5 workaround
 
 Go to `app/core/pom.xml` and add the following dependency:
 
@@ -49,3 +49,7 @@ Go to `app/core/pom.xml` and add the following dependency:
 		  <version>1.4.2</version>
 		</dependency>
 ```
+
+== Links
+* https://github.com/devonfw/ide/blob/master/documentation/Home.asciidoc#devonfw-ide[devonfw-ide]
+* https://github.com/devonfw/ide/blob/master/documentation/migration-from-devonfw-3.0.0-or-lower.asciidoc[devonfw-ide: Migration Guide]
