@@ -1,0 +1,9 @@
+= devonfw Java Foundations Training
+
+Training for the Java Stack (https://github.com/devonfw/devon4j[devon4j]) of https://devonfw.com[devonfw].
+
+Agenda for exercises:
+
+* link:documentation/0-setup.asciidoc[0-setup]
+* link:documentation/1-dependency-injection.asciidoc[1-dependency-injection]
+* link:documentation/2-dataaccess.asciidoc[2-dataacess]
