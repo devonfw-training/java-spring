@@ -1,0 +1,19 @@
+:toc: macro
+toc::[]
+
+= Dependency-Injection
+
+We want to play around with spring and test dependency-injection.
+Therefore we create packages, interfaces, and classes as in the following diagram:
+
+image::images/Dependency-Injection.png[width="100%"]
+
+So the idea is as followin:
+
+* We create two components: `CompoentA` and `ComponentB`
+* `ComponentB` can say hi to a given name by returning `"Hello " + name`
+* `ComponentA` uses `ComponentB` to return a greeting (e.g. `return sayHi("World")`)
+* Each component has an interface and an implementation
+* Implementation is annotated with `@Named`
+* `ComponentAImpl` uses `ComponentB` and gets it via `@Inject` annotation.
+* Write a JUnit test `ComponentATest` that verifies the expected result of `greet()`

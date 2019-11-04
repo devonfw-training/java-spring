@@ -12,7 +12,7 @@ After you have created your own link:0-setup.asciidoc[devon4j app creation], we 
 In your `core` module create the package `org.example.demo.ordermanagement.dataaccess.api` (in `src/main/java`).
 Inside this package create the following data-model:
 
-image::images/Entities.png[width="80%"]
+image::images/Entities.png[width="100%"]
 
 == Create Repositories
 
