@@ -17,3 +17,7 @@ So the idea is as followin:
 * Implementation is annotated with `@Named`
 * `ComponentAImpl` uses `ComponentB` and gets it via `@Inject` annotation.
 * Write a JUnit test `ComponentATest` that verifies the expected result of `greet()`
+
+= Links
+
+* https://github.com/devonfw/devon4j/blob/develop/documentation/guide-dependency-injection.asciidoc#dependency-injection[devon4j: dependency-injection]
