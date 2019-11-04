@@ -20,10 +20,10 @@ Now we create a new `devon4j` project:
 
 * Go to folder `workspaces/main` in `devonfw-training`.
 * In Windows-Explorer right-click it and select `Git Bash Here`.
-* In your `workspaces/main` folder run this command (NOTE: the archetypeVersion is only temporary due to a bug in `devon4j:3.2.0` release with JUnit 5 and `spring-test`):
+* In your `workspaces/main` folder run this command:
 +
 ```
-devon java create org.example.app -DarchetypeVersion=3.1.0
+devon java create org.example.app
 ```
 * `cd app`
 * `mvn clean install`
@@ -37,3 +37,15 @@ Next, we import the new `app` project into our Eclipse IDE:
 * Now select `SpringBootApp` from `app-core` and do `Run As` with option `Java Application`.
 * Visit http://localhost:8081 in your browser
 * Login as `waiter` with same password (see `BaseWebSecurityConfig.configureGlobal`).
+
+= JUnit5 workaround
+
+Go to `app/core/pom.xml` and add the following dependency:
+
+```
+		<dependency>
+		  <groupId>org.junit.platform</groupId>
+		  <artifactId>junit-platform-launcher</artifactId>
+		  <version>1.4.2</version>
+		</dependency>
+```
