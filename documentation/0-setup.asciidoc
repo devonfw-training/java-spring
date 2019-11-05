@@ -23,7 +23,7 @@ Now we create a new `devon4j` project:
 * In your `workspaces/main` folder run this command:
 +
 ```
-devon java create org.example.app
+devon java create org.example.app -DarchetypeVersion=3.1.0
 ```
 * `cd app`
 * `mvn clean install`
@@ -37,18 +37,6 @@ Next, we import the new `app` project into our Eclipse IDE:
 * Now select `SpringBootApp` from `app-core` and do `Run As` with option `Java Application`.
 * Visit http://localhost:8081 in your browser
 * Login as `waiter` with same password (see `BaseWebSecurityConfig.configureGlobal`).
-
-== JUnit5 workaround
-
-Go to `app/core/pom.xml` and add the following dependency:
-
-```
-		<dependency>
-		  <groupId>org.junit.platform</groupId>
-		  <artifactId>junit-platform-launcher</artifactId>
-		  <version>1.4.2</version>
-		</dependency>
-```
 
 == Links
 * https://github.com/devonfw/ide/blob/master/documentation/Home.asciidoc#devonfw-ide[devonfw-ide]
