@@ -1,0 +1,77 @@
+:toc: macro
+toc::[]
+
+= Order Service - Services Layer
+
+In this chapter we are going to create service layer which exposes backend functionality via REST services with JSON transport.
+
+== REST API
+
+First we create the REST API as interface in `api/src/main/java/org/example/app/ordermanagement/service/api/rest/OrdermanagementRestService`
+
+[source,java]
+----
+@Path("/ordermanagement/v1")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+public interface OrdermanagementRestService {
+
+  @GET
+  @Path("/order/{id}/")
+  OrderEto findOrder(@PathParam("id") long id);
+
+  // ...
+}
+----
+
+== REST Implementation
+
+Now we create a REST implementation class in `core/src/main/java/org/example/app/ordermanagement/logic/impl/OrdermanagementImpl`.
+
+Simply implement your REST interface as Java class and annotate it with `@Named`:
+[source,java]
+----
+@Named
+public class OrdermanagementRestServiceImpl implements OrdermanagementRestService {
+
+  @Inject
+  private Ordermanagement ordermanagement;
+
+  public OrderEto findOrder(@PathParam("id") long id) {
+	// TODO
+  }
+
+  // ...
+}
+----
+
+== Testing of service layer
+
+To properly test the implementation of rest service we define a subsystem tests in
+`core/src/test/java/org/example/app/offermanagement/service/impl/rest/OrdermanagementRestServiceTest`
+
+[source,java]
+----
+@RunWith(SpringRunner.class)
+public class OrdermanagementRestServiceTest extends RestServiceTest {
+  @Test
+  public void testFindOrder() {
+
+    String login = "waiter";
+    String password = "waiter";
+    OrdermanagementRestService service = getServiceClientFactory().create(OrdermanagementRestService.class,
+        new ServiceClientConfigBuilder().host("localhost").authBasic().userLogin(login).userPassword(password)
+            .buildMap());
+    OrderEto order = service.findOrder(1L);
+    assertThat(order.getPrice()).isEqualTo(new BigDecimal("25.50"));
+  }
+
+}
+----
+
+At the first look this appears to be the same as our test of the use-case or DAO.
+However, technically here a full server with HTTP stack is started within JUnit,
+the JUnit test itself invokes the server via HTTP GET request and de-serializes the JSON from the server response back to `OrderEto`. Besides authentication and all such aspects are also tested.
+
+The same infrastructure with `ServiceClientFactory` can also be used for microservices.
+
