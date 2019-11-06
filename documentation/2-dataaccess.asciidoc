@@ -86,9 +86,9 @@ First, we fix our `app/core/pom.xml` by replacing `devon4j-test` dependency with
 
 Now, we can create simple JUnits for our repositories like this:
 
-[source,sql]
+[source,java]
 ----
-@SpringBootTest(classes = SpringBootApplication.class, webEnvironment = WebEnvironment.MOCK)
+@SpringBootTest(classes = SpringBootApp.class, webEnvironment = WebEnvironment.MOCK)
 public class OrderRepositoryTest extends ComponentDbTest {
 
   @Inject

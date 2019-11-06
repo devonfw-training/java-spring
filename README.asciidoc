@@ -9,3 +9,4 @@ Agenda for exercises:
 * link:documentation/2-dataaccess.asciidoc[2-dataacess]
 * link:documentation/3-logic.asciidoc[3-logic]
 * link:documentation/4-service.asciidoc[4-service]
+* link:documentation/5-access-control.asciidoc[5-access-control]

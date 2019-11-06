@@ -1,0 +1,59 @@
+:toc: macro
+toc::[]
+
+= Order Service - Access-Control
+
+Now, we will create the authorization for our application.
+We will learn how to create permission and groups as well as how to apply permisions to business logic.
+
+== Authentication
+
+The basic configuration has already been created for you from the application template.
+You can find it in the class `BaseWebSecurityConfig` (and `BaseUserDetailsService`).
+
+As you can see in a first file there are some users configured already.
+
+== Authorization
+
+First we need to configure the available permissions of our application and group them for better administration. 
+Next we extend our use-cases with authorization so they can only be executed by users with the required permission.
+
+=== AccessControlConfig
+
+We open the class `ApplicationAccessControlConfig` and have a look.
+Here we define permissions as constants following devon4j naming conventions.
+For our entities `Item` and `Order` we create according permissions as constants here:
+
+* FindItem
+* SaveItem
+* DeleteItem
+* FindOrder
+* SaveOrder
+* DeleteOrder
+
+Also we add this group (yes, ommitt prefix for simplitiy so the waiter account defined in `ApplicationAccessControlConfig` matches):
+[source,java]
+----
+  public static final String GROUP_WAITER = "Waiter";
+----
+
+Next, we go to the `ApplicationAccessControlConfig` constructor and add the new `Find*` permissions to the group `readMasterData`.
+Then, we create the waiter group that inherits from `readMasterData` and extends it with the other new permissions:
+
+[source,java]
+----
+  group(GROUP_WAITER, readMasterData, PERMISSION_SAVE_ITEM, PERMISSION_DELETE_ITEM, PERMISSION_SAVE_ORDER, PERMISSION_DELETE_ORDER);
+----
+
+=== Test
+
+Test your authorization by creating a new JUnit test:
+
+* Use `TestUtil` to mock the login in your test methods (e.g. `TestUtil.login("testuser", ApplicationAccessControlConfig.PERMISSION_SAVE_ITEM)`). Then call the authorized use-case method to test.
+* Override `doTearDown()` and add `TestUtil.logout()` to revert the login after each test method and prevent side-effects on other tests.
+* Ensure you write both positive tests that work if the mocked user has appropriate permissions as well as negative tests that fail because the required permission is not granted to the user. For negative tests you may use `assertThrows` method.
+
+=== Links
+
+* https://github.com/devonfw/devon4j/blob/develop/documentation/guide-access-control.asciidoc#access-control[devon4j: Access-Control]
+* https://github.com/devonfw/devon4j/blob/develop/documentation/guide-security.asciidoc#security[devon4j: Security]
