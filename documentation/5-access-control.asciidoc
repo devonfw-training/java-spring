@@ -31,7 +31,7 @@ For our entities `Item` and `Order` we create according permissions as constants
 * SaveOrder
 * DeleteOrder
 
-Also we add this group (yes, ommitt prefix for simplitiy so the waiter account defined in `ApplicationAccessControlConfig` matches):
+Also we add this group (yes, ommit prefix for simplicitiy so the waiter account defined in `ApplicationAccessControlConfig` matches):
 [source,java]
 ----
   public static final String GROUP_WAITER = "Waiter";
