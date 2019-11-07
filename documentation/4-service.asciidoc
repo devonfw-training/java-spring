@@ -48,7 +48,7 @@ public class OrdermanagementRestServiceImpl implements OrdermanagementRestServic
 == Testing of service layer
 
 To properly test the implementation of rest service we define a subsystem tests in
-`core/src/test/java/org/example/app/offermanagement/service/impl/rest/OrdermanagementRestServiceTest`
+`core/src/test/java/org/example/app/ordermanagement/service/impl/rest/OrdermanagementRestServiceTest`
 
 [source,java]
 ----
