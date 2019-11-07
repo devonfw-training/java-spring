@@ -37,7 +37,7 @@ public class OrdermanagementRestServiceImpl implements OrdermanagementRestServic
   @Inject
   private Ordermanagement ordermanagement;
 
-  public OrderEto findOrder(@PathParam("id") long id) {
+  public OrderEto findOrder(long id) {
 	// TODO
   }
 
