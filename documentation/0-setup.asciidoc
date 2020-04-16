@@ -23,7 +23,7 @@ Now we create a new `devon4j` project:
 * In your `workspaces/main` folder run this command:
 +
 ```
-devon java create org.example.app -DarchetypeVersion=3.1.0
+devon java create org.example.app
 ```
 * `cd app`
 * `mvn clean install`
