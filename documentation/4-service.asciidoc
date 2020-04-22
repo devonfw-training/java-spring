@@ -52,7 +52,6 @@ To properly test the implementation of rest service we define a subsystem tests 
 
 [source,java]
 ----
-@RunWith(SpringRunner.class)
 public class OrdermanagementRestServiceTest extends RestServiceTest {
   @Test
   public void testFindOrder() {
