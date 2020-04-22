@@ -102,7 +102,7 @@ public class OrderRepositoryTest extends ComponentDbTest {
     OrderEntity order = this.orderRepository.find(orderId);
     // then
     assertThat(order).isNotNull();
-    assertThat(order.getPrice()).isEqualTo(BigDecimal.valueOf(25.5));
+    assertThat(order.getPrice()).isEqualTo(new BigDecimal("25.50"));
     // ...
   }
 
