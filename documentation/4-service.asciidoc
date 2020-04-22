@@ -26,7 +26,7 @@ public interface OrdermanagementRestService {
 
 == REST Implementation
 
-Now we create a REST implementation class in `core/src/main/java/org/example/app/ordermanagement/logic/impl/OrdermanagementImpl`.
+Now we create a REST implementation class in `core/src/main/java/org/example/app/ordermanagement/logic/impl/OrdermanagementRestServiceImpl`.
 
 Simply implement your REST interface as Java class and annotate it with `@Named`:
 [source,java]
