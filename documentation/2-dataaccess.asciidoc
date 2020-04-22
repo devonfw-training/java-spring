@@ -9,14 +9,14 @@ We create the entities and repositories as well as the corresponding database sc
 == Create Entities
 
 After you have created your own link:0-setup.asciidoc[devon4j app creation], we are going to create our first app component.
-In your `core` module create the package `org.example.demo.ordermanagement.dataaccess.api` (in `src/main/java`).
+In your `core` module create the package `org.example.app.ordermanagement.dataaccess.api` (in `src/main/java`).
 Inside this package create the following data-model:
 
 image::images/Entities.png[width="100%"]
 
 == Create Repositories
 
-For each entity create a corresponding repository in the package `org.example.demo.ordermanagement.dataaccess.api.repo`.
+For each entity create a corresponding repository in the package `org.example.app.ordermanagement.dataaccess.api.repo`.
 
 == Create DDL
 
