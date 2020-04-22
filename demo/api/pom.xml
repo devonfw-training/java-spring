@@ -41,5 +41,19 @@
       <artifactId>devon4j-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-runner</artifactId>
+      <!-- Override Spring-Boot choice for Eclipse -->
+      <version>1.4.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-launcher</artifactId>
+      <!-- Override Spring-Boot choice for Eclipse -->
+      <version>1.4.2</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>
