@@ -12,13 +12,12 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.example.demo.general.dataaccess.api.ApplicationPersistenceEntity;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 
 import com.devonfw.module.basic.common.api.reference.IdRef;
 import com.devonfw.module.jpa.dataaccess.api.JpaHelper;
 
 /**
- * {@link ApplicationPersistenceEntity Entity} for {@link Item}.
+ * {@link ApplicationPersistenceEntity Entity} for Item.
  */
 @Entity
 @Table(name = "ITEM")
