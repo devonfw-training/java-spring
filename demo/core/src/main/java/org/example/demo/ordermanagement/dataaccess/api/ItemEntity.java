@@ -13,7 +13,6 @@ import javax.persistence.Transient;
 
 import org.example.demo.general.dataaccess.api.ApplicationPersistenceEntity;
 import org.example.demo.ordermanagement.common.api.Item;
-import org.example.demo.ordermanagement.common.api.Order;
 
 import com.devonfw.module.basic.common.api.reference.IdRef;
 import com.devonfw.module.jpa.dataaccess.api.JpaHelper;
@@ -80,15 +79,19 @@ public class ItemEntity extends ApplicationPersistenceEntity implements Item {
 
   @Override
   @Transient
-  public IdRef<Order> getOrderId() {
+  public Long getOrderId() {
 
-    return IdRef.of(this.order);
+    if (this.order == null) {
+      return null;
+    } else {
+      return this.order.getId();
+    }
   }
 
   @Override
-  public void setOrderId(IdRef<Order> orderId) {
+  public void setOrderId(Long orderId) {
 
-    this.order = JpaHelper.asEntity(orderId, OrderEntity.class);
+    this.order = JpaHelper.asEntity(IdRef.of(orderId), OrderEntity.class);
   }
 
   @Override

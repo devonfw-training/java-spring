@@ -5,8 +5,6 @@ import java.time.Instant;
 
 import org.example.demo.general.common.api.ApplicationEntity;
 
-import com.devonfw.module.basic.common.api.reference.IdRef;
-
 /**
  * An {@link Item} is a single position of an {@link #getOrderId() Order}. It corresponds to an offer of the restaurant
  * from the menu. Each {@link Item} has a {@link #getPrice() price}, and {@link #getName() name} that represents the
@@ -38,14 +36,14 @@ public interface Item extends ApplicationEntity {
   public void setPrice(BigDecimal price);
 
   /**
-   * @return {@link IdRef} to the {@link Order} owining this {@link Item}.
+   * @return {@link Order#getId() primary key} of the {@link Order} owining this {@link Item}.
    */
-  public IdRef<Order> getOrderId();
+  public Long getOrderId();
 
   /**
    * @param orderId new value of {@link #getOrderId()}.
    */
-  public void setOrderId(IdRef<Order> orderId);
+  public void setOrderId(Long orderId);
 
   /**
    * @return {@link Instant} when this {@link Item} was created (and added to {@link Order}).

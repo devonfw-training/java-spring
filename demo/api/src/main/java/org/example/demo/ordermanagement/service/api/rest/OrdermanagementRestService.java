@@ -16,13 +16,15 @@ import org.example.demo.ordermanagement.logic.api.to.OrderEto;
 import org.example.demo.ordermanagement.logic.api.to.OrderSearchCriteriaTo;
 import org.springframework.data.domain.Page;
 
+import com.devonfw.module.rest.common.api.RestService;
+
 /**
  * The service interface for REST calls in order to execute the logic of component {@link Ordermanagement}.
  */
 @Path("/ordermanagement/v1")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public interface OrdermanagementRestService {
+public interface OrdermanagementRestService extends RestService {
 
   /**
    * Delegates to {@link Ordermanagement#findOrder}.

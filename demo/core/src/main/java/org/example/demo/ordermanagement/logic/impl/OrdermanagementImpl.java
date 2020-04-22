@@ -4,8 +4,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.example.demo.general.logic.base.AbstractComponentFacade;
-import org.example.demo.ordermanagement.common.api.Item;
-import org.example.demo.ordermanagement.common.api.Order;
 import org.example.demo.ordermanagement.logic.api.Ordermanagement;
 import org.example.demo.ordermanagement.logic.api.to.ItemEto;
 import org.example.demo.ordermanagement.logic.api.to.ItemSearchCriteriaTo;
@@ -16,8 +14,6 @@ import org.example.demo.ordermanagement.logic.api.usecase.UcFindOrder;
 import org.example.demo.ordermanagement.logic.api.usecase.UcManageItem;
 import org.example.demo.ordermanagement.logic.api.usecase.UcManageOrder;
 import org.springframework.data.domain.Page;
-
-import com.devonfw.module.basic.common.api.reference.IdRef;
 
 /**
  * Implementation of component interface of ordermanagement
@@ -38,7 +34,7 @@ public class OrdermanagementImpl extends AbstractComponentFacade implements Orde
   private UcManageItem ucManageItem;
 
   @Override
-  public OrderEto findOrder(IdRef<Order> id) {
+  public OrderEto findOrder(Long id) {
 
     return this.ucFindOrder.findOrder(id);
   }
@@ -56,13 +52,13 @@ public class OrdermanagementImpl extends AbstractComponentFacade implements Orde
   }
 
   @Override
-  public void deleteOrder(IdRef<Order> orderId) {
+  public void deleteOrder(Long orderId) {
 
     this.ucManageOrder.deleteOrder(orderId);
   }
 
   @Override
-  public ItemEto findItem(IdRef<Item> id) {
+  public ItemEto findItem(Long id) {
 
     return this.ucFindItem.findItem(id);
   }
@@ -80,7 +76,7 @@ public class OrdermanagementImpl extends AbstractComponentFacade implements Orde
   }
 
   @Override
-  public void deleteItem(IdRef<Item> id) {
+  public void deleteItem(Long id) {
 
     this.ucManageItem.deleteItem(id);
   }

@@ -2,21 +2,20 @@ package org.example.demo.ordermanagement.logic.impl.usecase;
 
 import java.util.Optional;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.example.demo.ordermanagement.common.api.Order;
+import org.example.demo.general.logic.base.AbstractUc;
 import org.example.demo.ordermanagement.dataaccess.api.OrderEntity;
+import org.example.demo.ordermanagement.dataaccess.api.repo.OrderRepository;
 import org.example.demo.ordermanagement.logic.api.to.OrderEto;
 import org.example.demo.ordermanagement.logic.api.to.OrderSearchCriteriaTo;
 import org.example.demo.ordermanagement.logic.api.usecase.UcFindOrder;
-import org.example.demo.ordermanagement.logic.base.usecase.AbstractOrderUc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-
-import com.devonfw.module.basic.common.api.reference.IdRef;
 
 /**
  * Implementation of {@link UcFindOrder}.
@@ -24,20 +23,30 @@ import com.devonfw.module.basic.common.api.reference.IdRef;
 @Named
 @Validated
 @Transactional
-public class UcFindOrderImpl extends AbstractOrderUc implements UcFindOrder {
+public class UcFindOrderImpl extends AbstractUc implements UcFindOrder {
 
   private static final Logger LOG = LoggerFactory.getLogger(UcFindOrderImpl.class);
 
-  @Override
-  public OrderEto findOrder(IdRef<Order> id) {
+  /** @see #getOrderRepository() */
+  @Inject
+  private OrderRepository orderRepository;
 
-    Long orderId = null;
+  /**
+   * Returns the field 'orderRepository'.
+   *
+   * @return the {@link OrderRepository} instance.
+   */
+  public OrderRepository getOrderRepository() {
+
+    return this.orderRepository;
+  }
+
+  @Override
+  public OrderEto findOrder(Long id) {
+
     if (id != null) {
-      orderId = id.getId();
-    }
-    if (orderId != null) {
-      LOG.debug("Get Order with id {} from database.", orderId);
-      Optional<OrderEntity> foundEntity = getOrderRepository().findById(orderId);
+      LOG.debug("Get Order with id {} from database.", id);
+      Optional<OrderEntity> foundEntity = getOrderRepository().findById(id);
       if (foundEntity.isPresent()) {
         return getBeanMapper().map(foundEntity.get(), OrderEto.class);
       }

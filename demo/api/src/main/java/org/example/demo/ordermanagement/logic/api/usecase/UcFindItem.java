@@ -7,18 +7,16 @@ import org.example.demo.ordermanagement.logic.api.to.ItemEto;
 import org.example.demo.ordermanagement.logic.api.to.ItemSearchCriteriaTo;
 import org.springframework.data.domain.Page;
 
-import com.devonfw.module.basic.common.api.reference.IdRef;
-
 /**
  * Use-case to search and find {@link Item}s.
  */
 public interface UcFindItem {
 
   /**
-   * @param id {@link IdRef} of {@link Item} to find.
+   * @param id {@link ItemEto#getId() primary key} of {@link Item} to find.
    * @return the {@link ItemEto} with given ID or {@code null} if not exists.
    */
-  ItemEto findItem(IdRef<Item> id);
+  ItemEto findItem(Long id);
 
   /**
    * Returns a paginated list of Items matching the search criteria.

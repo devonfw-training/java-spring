@@ -11,8 +11,6 @@ import org.example.demo.ordermanagement.logic.api.to.OrderSearchCriteriaTo;
 import org.example.demo.ordermanagement.service.api.rest.OrdermanagementRestService;
 import org.springframework.data.domain.Page;
 
-import com.devonfw.module.basic.common.api.reference.IdRef;
-
 /**
  * The service implementation for REST calls in order to execute the logic of component {@link Ordermanagement}.
  */
@@ -25,7 +23,7 @@ public class OrdermanagementRestServiceImpl implements OrdermanagementRestServic
   @Override
   public OrderEto findOrder(long id) {
 
-    return this.ordermanagement.findOrder(IdRef.of(id));
+    return this.ordermanagement.findOrder(id);
   }
 
   @Override
@@ -37,7 +35,7 @@ public class OrdermanagementRestServiceImpl implements OrdermanagementRestServic
   @Override
   public void deleteOrder(long id) {
 
-    this.ordermanagement.deleteOrder(IdRef.of(id));
+    this.ordermanagement.deleteOrder(id);
   }
 
   @Override
@@ -49,7 +47,7 @@ public class OrdermanagementRestServiceImpl implements OrdermanagementRestServic
   @Override
   public ItemEto findItem(long id) {
 
-    return this.ordermanagement.findItem(IdRef.of(id));
+    return this.ordermanagement.findItem(id);
   }
 
   @Override
@@ -61,7 +59,7 @@ public class OrdermanagementRestServiceImpl implements OrdermanagementRestServic
   @Override
   public void deleteItem(long id) {
 
-    this.ordermanagement.deleteItem(IdRef.of(id));
+    this.ordermanagement.deleteItem(id);
   }
 
   @Override

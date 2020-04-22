@@ -5,9 +5,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 import org.example.demo.ordermanagement.common.api.Item;
-import org.example.demo.ordermanagement.common.api.Order;
 
-import com.devonfw.module.basic.common.api.reference.IdRef;
 import com.devonfw.module.basic.common.api.to.AbstractEto;
 
 /**
@@ -21,7 +19,7 @@ public class ItemEto extends AbstractEto implements Item {
 
   private BigDecimal price;
 
-  private IdRef<Order> orderId;
+  private Long orderId;
 
   private Instant creationDate;
 
@@ -78,13 +76,13 @@ public class ItemEto extends AbstractEto implements Item {
   }
 
   @Override
-  public IdRef<Order> getOrderId() {
+  public Long getOrderId() {
 
     return this.orderId;
   }
 
   @Override
-  public void setOrderId(IdRef<Order> orderId) {
+  public void setOrderId(Long orderId) {
 
     this.orderId = orderId;
   }
