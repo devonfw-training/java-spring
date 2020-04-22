@@ -5,11 +5,8 @@ import javax.inject.Named;
 
 import org.example.demo.ordermanagement.logic.api.Ordermanagement;
 import org.example.demo.ordermanagement.logic.api.to.ItemEto;
-import org.example.demo.ordermanagement.logic.api.to.ItemSearchCriteriaTo;
 import org.example.demo.ordermanagement.logic.api.to.OrderEto;
-import org.example.demo.ordermanagement.logic.api.to.OrderSearchCriteriaTo;
 import org.example.demo.ordermanagement.service.api.rest.OrdermanagementRestService;
-import org.springframework.data.domain.Page;
 
 /**
  * The service implementation for REST calls in order to execute the logic of component {@link Ordermanagement}.
@@ -39,12 +36,6 @@ public class OrdermanagementRestServiceImpl implements OrdermanagementRestServic
   }
 
   @Override
-  public Page<OrderEto> findOrders(OrderSearchCriteriaTo searchCriteriaTo) {
-
-    return this.ordermanagement.findOrders(searchCriteriaTo);
-  }
-
-  @Override
   public ItemEto findItem(long id) {
 
     return this.ordermanagement.findItem(id);
@@ -60,12 +51,6 @@ public class OrdermanagementRestServiceImpl implements OrdermanagementRestServic
   public void deleteItem(long id) {
 
     this.ordermanagement.deleteItem(id);
-  }
-
-  @Override
-  public Page<ItemEto> findItems(ItemSearchCriteriaTo searchCriteriaTo) {
-
-    return this.ordermanagement.findItems(searchCriteriaTo);
   }
 
 }

@@ -9,11 +9,9 @@ import org.example.demo.general.logic.base.AbstractUc;
 import org.example.demo.ordermanagement.dataaccess.api.OrderEntity;
 import org.example.demo.ordermanagement.dataaccess.api.repo.OrderRepository;
 import org.example.demo.ordermanagement.logic.api.to.OrderEto;
-import org.example.demo.ordermanagement.logic.api.to.OrderSearchCriteriaTo;
 import org.example.demo.ordermanagement.logic.api.usecase.UcFindOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
@@ -52,13 +50,6 @@ public class UcFindOrderImpl extends AbstractUc implements UcFindOrder {
       }
     }
     return null;
-  }
-
-  @Override
-  public Page<OrderEto> findOrders(OrderSearchCriteriaTo criteria) {
-
-    Page<OrderEntity> orders = getOrderRepository().findByCriteria(criteria);
-    return mapPaginatedEntityList(orders, OrderEto.class);
   }
 
 }

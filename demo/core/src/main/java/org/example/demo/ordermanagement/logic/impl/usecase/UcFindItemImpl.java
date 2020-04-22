@@ -9,11 +9,9 @@ import org.example.demo.general.logic.base.AbstractUc;
 import org.example.demo.ordermanagement.dataaccess.api.ItemEntity;
 import org.example.demo.ordermanagement.dataaccess.api.repo.ItemRepository;
 import org.example.demo.ordermanagement.logic.api.to.ItemEto;
-import org.example.demo.ordermanagement.logic.api.to.ItemSearchCriteriaTo;
 import org.example.demo.ordermanagement.logic.api.usecase.UcFindItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
@@ -52,13 +50,6 @@ public class UcFindItemImpl extends AbstractUc implements UcFindItem {
       }
     }
     return null;
-  }
-
-  @Override
-  public Page<ItemEto> findItems(ItemSearchCriteriaTo criteria) {
-
-    Page<ItemEntity> items = getItemRepository().findByCriteria(criteria);
-    return mapPaginatedEntityList(items, ItemEto.class);
   }
 
 }

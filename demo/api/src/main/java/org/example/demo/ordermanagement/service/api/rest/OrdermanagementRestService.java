@@ -11,10 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.example.demo.ordermanagement.logic.api.Ordermanagement;
 import org.example.demo.ordermanagement.logic.api.to.ItemEto;
-import org.example.demo.ordermanagement.logic.api.to.ItemSearchCriteriaTo;
 import org.example.demo.ordermanagement.logic.api.to.OrderEto;
-import org.example.demo.ordermanagement.logic.api.to.OrderSearchCriteriaTo;
-import org.springframework.data.domain.Page;
 
 import com.devonfw.module.rest.common.api.RestService;
 
@@ -54,14 +51,6 @@ public interface OrdermanagementRestService extends RestService {
   public void deleteOrder(@PathParam("id") long id);
 
   /**
-   * @param searchCriteriaTo the pagination and search criteria to be used for finding orders.
-   * @return the {@link Page list} of matching {@link OrderEto}s.
-   */
-  @Path("/order/search")
-  @POST
-  public Page<OrderEto> findOrders(OrderSearchCriteriaTo searchCriteriaTo);
-
-  /**
    * @param id the ID of the {@link ItemEto}
    * @return the {@link ItemEto}
    */
@@ -83,13 +72,5 @@ public interface OrdermanagementRestService extends RestService {
   @DELETE
   @Path("/item/{id}/")
   public void deleteItem(@PathParam("id") long id);
-
-  /**
-   * @param searchCriteriaTo the pagination and search criteria to be used for finding items.
-   * @return the {@link Page list} of matching {@link ItemEto}s.
-   */
-  @Path("/item/search")
-  @POST
-  public Page<ItemEto> findItems(ItemSearchCriteriaTo searchCriteriaTo);
 
 }
