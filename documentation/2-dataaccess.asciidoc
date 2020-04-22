@@ -79,7 +79,6 @@ First, we fix our `app/core/pom.xml` by replacing `devon4j-test` dependency with
     <dependency>
       <groupId>com.devonfw.java.modules</groupId>
       <artifactId>devon4j-test-jpa</artifactId>
-      <version>3.1.0</version>
       <scope>test</scope>
     </dependency>
 ```
