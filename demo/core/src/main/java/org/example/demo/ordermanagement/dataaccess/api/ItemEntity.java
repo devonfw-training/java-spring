@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.example.demo.general.dataaccess.api.ApplicationPersistenceEntity;
-import org.example.demo.ordermanagement.common.api.Item;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 
 import com.devonfw.module.basic.common.api.reference.IdRef;
 import com.devonfw.module.jpa.dataaccess.api.JpaHelper;
@@ -22,7 +22,7 @@ import com.devonfw.module.jpa.dataaccess.api.JpaHelper;
  */
 @Entity
 @Table(name = "ITEM")
-public class ItemEntity extends ApplicationPersistenceEntity implements Item {
+public class ItemEntity extends ApplicationPersistenceEntity {
 
   private static final long serialVersionUID = 1L;
 
@@ -34,26 +34,22 @@ public class ItemEntity extends ApplicationPersistenceEntity implements Item {
 
   private Instant creationDate;
 
-  @Override
   public String getName() {
 
     return this.name;
   }
 
-  @Override
   public void setName(String name) {
 
     this.name = name;
   }
 
-  @Override
   @Column(name = "PRICE")
   public BigDecimal getPrice() {
 
     return this.price;
   }
 
-  @Override
   public void setPrice(BigDecimal price) {
 
     this.price = price;
@@ -77,7 +73,6 @@ public class ItemEntity extends ApplicationPersistenceEntity implements Item {
     this.order = order;
   }
 
-  @Override
   @Transient
   public Long getOrderId() {
 
@@ -88,20 +83,17 @@ public class ItemEntity extends ApplicationPersistenceEntity implements Item {
     }
   }
 
-  @Override
   public void setOrderId(Long orderId) {
 
     this.order = JpaHelper.asEntity(IdRef.of(orderId), OrderEntity.class);
   }
 
-  @Override
   @Column(name = "CREATION_DATE")
   public Instant getCreationDate() {
 
     return this.creationDate;
   }
 
-  @Override
   public void setCreationDate(Instant creationDate) {
 
     this.creationDate = creationDate;
