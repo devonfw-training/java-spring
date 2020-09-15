@@ -36,7 +36,7 @@ Next, we import the new `app` project into our Eclipse IDE:
 * In Eclipse `Import` as `Existing Maven Project`, there click `Browse` and choose your generated `app` folder.
 * Now select `SpringBootApp` from `app-core` and do `Run As` with option `Java Application`.
 * Visit http://localhost:8081 in your browser
-* Login as `waiter` with same password (see `BaseWebSecurityConfig.configureGlobal`).
+* Login as `admin` with same password (see `BaseWebSecurityConfig.configureGlobal`).
 
 == Links
 * https://github.com/devonfw/ide/blob/master/documentation/Home.asciidoc#devonfw-ide[devonfw-ide]
