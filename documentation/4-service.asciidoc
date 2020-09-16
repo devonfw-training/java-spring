@@ -56,8 +56,8 @@ public class OrdermanagementRestServiceTest extends RestServiceTest {
   @Test
   public void testFindOrder() {
 
-    String login = "waiter";
-    String password = "waiter";
+    String login = "admin";
+    String password = "admin";
     OrdermanagementRestService service = getServiceClientFactory().create(OrdermanagementRestService.class,
         new ServiceClientConfigBuilder().host("localhost").authBasic().userLogin(login).userPassword(password)
             .buildMap());
