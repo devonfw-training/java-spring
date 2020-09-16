@@ -143,7 +143,7 @@ spring.h2.console.enabled=true
         http.headers().frameOptions().sameOrigin();
 ----
 
-* Now start your server and go to _http://localhost:8081/h2-console_. If this gives you an 403 or 404, you mighht have set a value for _server.servlet.context-path_ in your application.properties. Than you have to put it in the URL as path prefix.
+* Now start your server and go to _http://localhost:8081/h2-console_. If this gives you an 403 or 404, you might have set a value for _server.servlet.context-path_ in your application.properties. Than you have to put it in the URL as path prefix.
 * You should now see a login screen for the H2-console. If you are asked to login in our app, just do it as usual, but afterwards you should be routed to the h2-console. In the login screen of the H2-console set the value of JDBC URL to the value of _spring.datasource.url_ from before. Leave the user name as _sa_ and the password empty. 
 
 == Links
