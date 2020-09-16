@@ -109,6 +109,41 @@ public class OrderRepositoryTest extends ComponentDbTest {
 }
 ----
 
+== Setup H2-console
+The H2-concole can be helpful for debugging issues with the data. It can be started with the server and accessed by a webbrowser. For this some changes in the code are necessary.
+
+* Add the following dependencies to the pom.xml and then run _mvn clean install_:
+[source,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.hsqldb</groupId>
+    <artifactId>hsqldb</artifactId>
+    <scope>runtime</scope>
+</dependency>
+----
+
+* Add this in config/application.properties and remember the value of _spring.datasource.url_ you find here:
+[source,txt]
+----
+spring.h2.console.enabled=true
+----
+
+
+* In CsrfRequestMatcher add _"/h2-console"_ to String[] PATH_PREFIXES_WITHOUT_CSRF_PROTECTION. This is needed to whitelist the H2-console
+* In BaseWebSecurityConfig.configure add at the end:
+[source,java]
+----
+        // Fix for H2-console Frame Sets
+        http.headers().frameOptions().sameOrigin();
+----
+
+* Now start your server and go to _http://localhost:8081/h2-console_. If this gives you an 403 or 404, you mighht have set a value for _server.servlet.context-path_ in your application.properties. Than you have to put it in the URL as path prefix.
+* You should now see a login screen for the H2-console. If you are asked to login in our app, just do it as usual, but afterwards you should be routed to the h2-console. In the login screen of the H2-console set the value of JDBC URL to the value of _spring.datasource.url_ from before. Leave the user name as _sa_ and the password empty. 
+
 == Links
 
 * https://github.com/devonfw/devon4j/blob/develop/documentation/guide-jpa.asciidoc#java-persistence-api[devon4j:JPA]
