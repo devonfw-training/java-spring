@@ -114,7 +114,7 @@ public class OrderRepositoryTest extends ComponentDbTest {
 == Setup H2-console
 The H2-concole can be helpful for debugging issues with the data. It can be started with the server and accessed by a webbrowser. For this some changes in the code are necessary.
 
-* Add the following dependencies to the pom.xml and then run _mvn clean install_:
+* Add the following dependencies to the `pom.xml` and then run `mvn clean install`:
 [source,xml]
 ----
 <dependency>
@@ -128,14 +128,14 @@ The H2-concole can be helpful for debugging issues with the data. It can be star
 </dependency>
 ----
 
-* Add this in config/application.properties and remember the value of _spring.datasource.url_ you find here:
+* Add this in config/application.properties and remember the value of `spring.datasource.url` you find here:
 [source,txt]
 ----
 spring.h2.console.enabled=true
 ----
 
 
-* In CsrfRequestMatcher add _"/h2-console"_ to String[] PATH_PREFIXES_WITHOUT_CSRF_PROTECTION. This is needed to whitelist the H2-console
+* In CsrfRequestMatcher add `"/h2-console"` to String[] PATH_PREFIXES_WITHOUT_CSRF_PROTECTION. This is needed to whitelist the H2-console
 * In BaseWebSecurityConfig.configure add at the end:
 [source,java]
 ----
@@ -143,8 +143,8 @@ spring.h2.console.enabled=true
         http.headers().frameOptions().sameOrigin();
 ----
 
-* Now start your server and go to _http://localhost:8081/h2-console_. If this gives you an 403 or 404, you might have set a value for _server.servlet.context-path_ in your application.properties. Than you have to put it in the URL as path prefix.
-* You should now see a login screen for the H2-console. If you are asked to login in our app, just do it as usual, but afterwards you should be routed to the h2-console. In the login screen of the H2-console set the value of JDBC URL to the value of _spring.datasource.url_ from before. Leave the user name as _sa_ and the password empty. 
+* Now start your server and go to _http://localhost:8081/h2-console_. If this gives you an 403 or 404, you might have set a value for `server.servlet.context-path` in your `application.properties`. Than you have to put it in the URL as path prefix.
+* You should now see a login screen for the H2-console. If you are asked to login in our app, just do it as usual, but afterwards you should be routed to the h2-console. In the login screen of the H2-console set the value of JDBC URL to the value of `spring.datasource.url` from before. Leave the user name as `sa` and the password empty.
 
 == Links
 
