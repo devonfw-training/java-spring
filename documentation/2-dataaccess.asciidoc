@@ -114,7 +114,7 @@ public class OrderRepositoryTest extends ComponentDbTest {
 == Setup H2-console
 The H2-concole can be helpful for debugging issues with the data. It can be started with the server and accessed by a webbrowser. For this some changes in the code are necessary.
 
-* Add the following dependencies to the `pom.xml` and then run `mvn clean install`:
+* Add the following dependencies to the `pom.xml` in the core package and then run `mvn clean install`:
 [source,xml]
 ----
 <dependency>
@@ -128,7 +128,7 @@ The H2-concole can be helpful for debugging issues with the data. It can be star
 </dependency>
 ----
 
-* Add this in config/application.properties and remember the value of `spring.datasource.url` you find here:
+* From config/application.properties in the core package copy the value of `spring.datasource.url` you find here, we will need it later. Also add in this file:
 [source,txt]
 ----
 spring.h2.console.enabled=true
@@ -136,7 +136,7 @@ spring.h2.console.enabled=true
 
 
 * In CsrfRequestMatcher add `"/h2-console"` to String[] PATH_PREFIXES_WITHOUT_CSRF_PROTECTION. This is needed to whitelist the H2-console
-* In BaseWebSecurityConfig.configure add at the end:
+* In the class BaseWebSecurityConfig add at the end of the method configure:
 [source,java]
 ----
         // Fix for H2-console Frame Sets
