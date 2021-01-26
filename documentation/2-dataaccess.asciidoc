@@ -134,8 +134,6 @@ The H2-concole can be helpful for debugging issues with the data. It can be star
 spring.h2.console.enabled=true
 ----
 
-
-* In CsrfRequestMatcher add `"/h2-console"` to String[] PATH_PREFIXES_WITHOUT_CSRF_PROTECTION. This is needed to whitelist the H2-console
 * In the class `BaseWebSecurityConfig` add at the end of the method configure:
 [source,java]
 ----
