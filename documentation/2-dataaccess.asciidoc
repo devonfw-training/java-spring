@@ -136,7 +136,7 @@ spring.h2.console.enabled=true
 
 
 * In CsrfRequestMatcher add `"/h2-console"` to String[] PATH_PREFIXES_WITHOUT_CSRF_PROTECTION. This is needed to whitelist the H2-console
-* In the class BaseWebSecurityConfig add at the end of the method configure:
+* In the class `BaseWebSecurityConfig` add at the end of the method configure:
 [source,java]
 ----
         // Fix for H2-console Frame Sets
