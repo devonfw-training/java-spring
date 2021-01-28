@@ -9,14 +9,16 @@ We create the entities and repositories as well as the corresponding database sc
 == Create Entities
 
 After you have created your own link:0-setup.asciidoc[devon4j app creation], we are going to create our first app component.
-In your `core` module create the package `org.example.demo.ordermanagement.dataaccess.api` (in `src/main/java`).
-Inside this package create the following data-model:
+In your `core` module create the package `org.example.app.ordermanagement.dataaccess.api` (in `src/main/java`).
+Inside this package create the `ItemEntity` and `OrderEntity` as illustrated by the following diagramm:
 
 image::images/Entities.png[width="100%"]
 
+However, the `OrderStatus` Enum has to be created in the `api` module (because it is a datatype that will later be used in our API) in the package `org.example.app.ordermanagement.common.api`.
+
 == Create Repositories
 
-For each entity create a corresponding repository in the package `org.example.demo.ordermanagement.dataaccess.api.repo`.
+For each entity create a corresponding repository in the package `org.example.app.ordermanagement.dataaccess.api.repo`.
 
 == Create DDL
 
@@ -79,7 +81,6 @@ First, we fix our `app/core/pom.xml` by replacing `devon4j-test` dependency with
     <dependency>
       <groupId>com.devonfw.java.modules</groupId>
       <artifactId>devon4j-test-jpa</artifactId>
-      <version>3.1.0</version>
       <scope>test</scope>
     </dependency>
 ```
@@ -103,12 +104,45 @@ public class OrderRepositoryTest extends ComponentDbTest {
     OrderEntity order = this.orderRepository.find(orderId);
     // then
     assertThat(order).isNotNull();
-    assertThat(order.getPrice()).isEqualTo(BigDecimal.valueOf(25.5));
+    assertThat(order.getPrice()).isEqualTo(new BigDecimal("25.50"));
     // ...
   }
 
 }
 ----
+
+== Setup H2-console
+The H2-concole can be helpful for debugging issues with the data. It can be started with the server and accessed by a webbrowser. For this some changes in the code are necessary.
+
+* Add the following dependencies to the `pom.xml` in the core package and then run `mvn clean install`:
+[source,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.hsqldb</groupId>
+    <artifactId>hsqldb</artifactId>
+    <scope>runtime</scope>
+</dependency>
+----
+
+* From config/application.properties in the core package copy the value of `spring.datasource.url` you find here, we will need it later. Also add in this file:
+[source,txt]
+----
+spring.h2.console.enabled=true
+----
+
+* In the class `BaseWebSecurityConfig` add at the end of the method configure:
+[source,java]
+----
+        // Fix for H2-console Frame Sets
+        http.headers().frameOptions().sameOrigin();
+----
+
+* Now start your server and go to _http://localhost:8081/h2-console_. If this gives you an 403 or 404, you might have set a value for `server.servlet.context-path` in your `application.properties`. Than you have to put it in the URL as path prefix.
+* You should now see a login screen for the H2-console. If you are asked to login in our app, just do it as usual, but afterwards you should be routed to the h2-console. In the login screen of the H2-console set the value of JDBC URL to the value of `spring.datasource.url` from before. Leave the user name as `sa` and the password empty.
 
 == Links
 
