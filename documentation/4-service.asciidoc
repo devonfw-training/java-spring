@@ -51,7 +51,7 @@ The URL of the service should be like this (what will retrive order with ID `1` 
 http://localhost:8081/services/rest/ordermanagement/v1/order/1
 
 To properly test the implementation of rest service we define a subsystem tests in
-`core/src/test/java/org/example/app/offermanagement/service/impl/rest/OrdermanagementRestServiceTest`
+`core/src/test/java/org/example/app/ordermanagement/service/impl/rest/OrdermanagementRestServiceTest`
 
 [source,java]
 ----
