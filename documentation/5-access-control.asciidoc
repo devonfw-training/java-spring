@@ -31,10 +31,16 @@ For our entities `Item` and `Order` we create according permissions as constants
 * SaveOrder
 * DeleteOrder
 
-Also we add this group (yes, ommitt prefix for simplitiy so the waiter account defined in `ApplicationAccessControlConfig` matches):
+Also we add this group (yes, ommitt prefix for simplicity so the waiter account defined in `ApplicationAccessControlConfig` matches):
 [source,java]
 ----
-  public static final String GROUP_WAITER = "Waiter";
+  public static final String GROUP_WAITER = "waiter";
+----
+
+Additionally, we add a new user in `BaseWebSecurityConfig.configureGlobal`:
+[source,java]
+----
+  auth.inMemoryAuthentication().withUser("waiter").password(this.passwordEncoder.encode("waiter")).roles("waiter");
 ----
 
 Next, we go to the `ApplicationAccessControlConfig` constructor and add the new `Find*` permissions to the group `readMasterData`.
