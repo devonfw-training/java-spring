@@ -6,6 +6,8 @@ toc::[]
 In this chapter we are going to create business logic layer for already implemented database entities, repositories, and queries.
 We are going to prepare transfer-objects and use-cases together with facades and proper component tests.
 
+*ATTENTION:* When you are new to devonfw, it might be a little tricky to get the packaging right and to understand what should go into `api` and what should go into `core`. Therefore, please consult the https://github.com/devonfw/devon4j/blob/develop/documentation/coding-conventions.asciidoc#architecture-mapping[architecture-mapping] of the `devon4j` documentation.
+
 == Transfer objects
 
 In the link:2-dataaccess.asciidoxc[dataaccess exercise] you have created the _Entity infrastructure_.
