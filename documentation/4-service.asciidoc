@@ -72,8 +72,8 @@ public class OrdermanagementRestServiceTest extends RestServiceTest {
 ----
 
 At the first look this appears to be the same as our test of the use-case or repository.
-However, technically here a full server with HTTP stack is started within JUnit,
-the JUnit test itself invokes the server via HTTP GET request and de-serializes the JSON from the server response back to `OrderEto`. Besides authentication and all such aspects are also tested.
+However, technically here a full server with HTTP stack is started within JUnit.
+The JUnit test itself invokes the server via HTTP GET request and de-serializes the JSON from the server response back to `OrderEto`. Besides authentication and all such aspects are also tested.
 
 The same infrastructure with `ServiceClientFactory` can also be used for microservices.
 
