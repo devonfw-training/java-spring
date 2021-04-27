@@ -42,7 +42,11 @@ Each of use-case implementation shall be annotated as following:
 @Transactional
 ----
 
-== Component-Facade
+== Component-Facade (optional)
+
+If you have completed the use-cases and still have some time left, you can create the facade for the `ordermanagement` component.
+Otherwise you can skip here and simply inject the use-cases directly in the next exercises.
+The component facade simplifies such injection as you always just inject the component facade via its interface and can find any use-case method via content assist (tab auto-completion).
 
 If other components or the service-layer want to use these use-cases, we can compose them as component-facade: `Ordermanagement[Impl]`
 
