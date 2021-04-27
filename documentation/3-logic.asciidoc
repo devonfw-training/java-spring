@@ -56,6 +56,11 @@ If other components or the service-layer want to use these use-cases, we can com
 Example:
 [source,java]
 ----
+  @Inject
+  private UcFindOrder ucFindOrder;
+
+  ...
+
   @Override
   public OrderEto findOrder(IdRef<Order> id) {
 
