@@ -43,6 +43,14 @@ Additionally, we add a new user in `BaseWebSecurityConfig.configureGlobal`:
   auth.inMemoryAuthentication().withUser("waiter").password(this.passwordEncoder.encode("waiter")).roles("waiter");
 ----
 
+Note: This entire login-mechanism with hardcoded accounts including passwords is obviously entirely inacceptable for a real application.
+In a real project you would here integrate with an Identity- und Access-Management (IAM).
+However, to start fast, easy and agile, the devon4j application template intentionally ships with this as a starting point to be then replaced.
+The real IAM integration will differ between projects and add an additional application with quite some complexity.
+Typically, this will happen via https://github.com/devonfw/devon4j/blob/master/documentation/guide-jwt.asciidoc[JWT authentication].
+
+ATTENTION: Further, there is also the issue https://github.com/devonfw/devon4j/issues/385[devon4j#385]: currently the roles (in the above code example `roles("waiter")`) are ignored and in reality the login is automatically used as the only role of the user.
+
 Next, we go to the `ApplicationAccessControlConfig` constructor and add the new `Find*` permissions to the group `readMasterData`.
 Then, we create the waiter group that inherits from `readMasterData` and extends it with the other new permissions:
 
