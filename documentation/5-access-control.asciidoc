@@ -69,7 +69,7 @@ Test your authorization by creating a new JUnit test:
 
 ==== Integration-Test (optional)
 
-If you have some time left, you can create an integration test based on `RestServiceTest` and https://github.com/devonfw/devon4j/blob/master/documentation/guide-service-client.asciidoc[Service-Client] (see also link:4-service.asciidoc#testing-of-service-layer[exercise 4 services]) including permission checks (positive and negative test).
+If you have some time left, you can create an integration test based on `RestServiceTest` and https://github.com/devonfw/devon4j/blob/master/documentation/guide-service-client.asciidoc[Service-Client] (see also link:4-service.asciidoc#integration-test-optional[exercise 4 services]) including permission checks (positive and negative test).
 
 === Links
 
