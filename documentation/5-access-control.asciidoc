@@ -67,6 +67,10 @@ Test your authorization by creating a new JUnit test:
 * Override `doTearDown()` and add `TestUtil.logout()` to revert the login after each test method and prevent side-effects on other tests.
 * Ensure you write both positive tests that work if the mocked user has appropriate permissions as well as negative tests that fail because the required permission is not granted to the user. For negative tests you may use `assertThrows` method.
 
+==== Integration-Test (optional)
+
+If you have some time left, you can create an integration test based on `RestServiceTest` and https://github.com/devonfw/devon4j/blob/master/documentation/guide-service-client.asciidoc[Service-Client] (see also link:4-service.asciidoc#testing-of-service-layer) including permission checks (positive and negative test).
+
 === Links
 
 * https://github.com/devonfw/devon4j/blob/develop/documentation/guide-access-control.asciidoc#access-control[devon4j: Access-Control]
