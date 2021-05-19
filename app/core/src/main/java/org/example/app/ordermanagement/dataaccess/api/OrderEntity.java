@@ -10,53 +10,66 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import org.example.app.general.dataaccess.api.ApplicationPersistenceEntity;
+import org.example.app.ordermanagement.common.api.Order;
 import org.example.app.ordermanagement.common.api.OrderStatus;
 
+/**
+ * {@link ApplicationPersistenceEntity Entity} for {@link Order}.
+ */
 @Entity
 @Table(name = "RESTAURANT_ORDER")
-public class OrderEntity extends ApplicationPersistenceEntity {
+public class OrderEntity extends ApplicationPersistenceEntity implements Order {
 
   private BigDecimal price;
 
-  private Instant creationData;
+  private Instant creationDate;
 
   private Instant paymentDate;
 
   private OrderStatus status;
 
+  private static final long serialVersionUID = 1L;
+
+  @Override
   @Column(name = "PRICE")
   public BigDecimal getPrice() {
 
     return this.price;
   }
 
+  @Override
   public void setPrice(BigDecimal price) {
 
     this.price = price;
   }
 
+  @Override
   @Column(name = "CREATION_DATE")
-  public Instant getCreationData() {
+  public Instant getCreationDate() {
 
-    return this.creationData;
+    return this.creationDate;
   }
 
-  public void setCreationData(Instant creationData) {
+  @Override
+  public void setCreationDate(Instant creationDate) {
 
-    this.creationData = creationData;
+    this.creationDate = creationDate;
   }
 
+  @Override
   @Column(name = "PAYMENT_DATE")
   public Instant getPaymentDate() {
 
     return this.paymentDate;
   }
 
+  @Override
   public void setPaymentDate(Instant paymentDate) {
 
     this.paymentDate = paymentDate;
   }
 
+  @Override
   @Column(name = "STATUS")
   @Enumerated(EnumType.STRING)
   public OrderStatus getStatus() {
@@ -64,6 +77,7 @@ public class OrderEntity extends ApplicationPersistenceEntity {
     return this.status;
   }
 
+  @Override
   public void setStatus(OrderStatus status) {
 
     this.status = status;
