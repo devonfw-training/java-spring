@@ -37,8 +37,6 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
   @Inject
   private WebSecurityConfigurer webSecurityConfigurer;
 
-
-
   /**
    * Configure spring security to enable a simple webform-login + a simple rest login.
    */
@@ -66,7 +64,7 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
         .logout().logoutSuccessUrl("/login.html").and()
         // register login and logout filter that handles rest logins
         .addFilterAfter(getSimpleRestAuthenticationFilter(), BasicAuthenticationFilter.class)
-        .addFilterAfter(getSimpleRestLogoutFilter(), LogoutFilter.class);
+        .addFilterAfter(getSimpleRestLogoutFilter(), LogoutFilter.class).headers().frameOptions().sameOrigin();
   }
 
   /**
