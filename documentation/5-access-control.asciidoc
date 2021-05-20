@@ -40,7 +40,8 @@ Also we add this group (yes, ommit prefix for simplicity so the waiter account d
 Additionally, we add a new user in `BaseWebSecurityConfig.configureGlobal`:
 [source,java]
 ----
-  auth.inMemoryAuthentication().withUser("waiter").password(this.passwordEncoder.encode("waiter")).roles("waiter");
+  auth.inMemoryAuthentication() ...
+    .and().withUser("waiter").password(this.passwordEncoder.encode("waiter")).roles("waiter");
 ----
 
 Note: This entire login-mechanism with hardcoded accounts including passwords is obviously entirely inacceptable for a real application.
