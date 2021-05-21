@@ -2,8 +2,10 @@ package org.example.app.ordermanagement.logic.impl.usecase;
 
 import java.util.Optional;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Named;
 
+import org.example.app.general.common.api.security.ApplicationAccessControlConfig;
 import org.example.app.ordermanagement.dataaccess.api.OrderEntity;
 import org.example.app.ordermanagement.logic.api.to.OrderEto;
 import org.example.app.ordermanagement.logic.api.to.OrderSearchCriteriaTo;
@@ -29,6 +31,7 @@ public class UcFindOrderImpl extends AbstractOrderUc implements UcFindOrder {
   private static final Logger LOG = LoggerFactory.getLogger(UcFindOrderImpl.class);
 
   @Override
+  @RolesAllowed(ApplicationAccessControlConfig.PERMISSION_FIND_ORDER)
   public OrderEto findOrder(long id) {
 
     LOG.debug("Get Order with id {} from database.", id);
@@ -40,6 +43,7 @@ public class UcFindOrderImpl extends AbstractOrderUc implements UcFindOrder {
   }
 
   @Override
+  @RolesAllowed(ApplicationAccessControlConfig.PERMISSION_FIND_ORDER)
   public Page<OrderEto> findOrders(OrderSearchCriteriaTo criteria) {
 
     Page<OrderEntity> orders = getOrderRepository().findByCriteria(criteria);

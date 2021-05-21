@@ -2,8 +2,10 @@ package org.example.app.ordermanagement.logic.impl.usecase;
 
 import java.util.Objects;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Named;
 
+import org.example.app.general.common.api.security.ApplicationAccessControlConfig;
 import org.example.app.ordermanagement.dataaccess.api.OrderEntity;
 import org.example.app.ordermanagement.logic.api.to.OrderEto;
 import org.example.app.ordermanagement.logic.api.usecase.UcManageOrder;
@@ -27,6 +29,7 @@ public class UcManageOrderImpl extends AbstractOrderUc implements UcManageOrder 
   private static final Logger LOG = LoggerFactory.getLogger(UcManageOrderImpl.class);
 
   @Override
+  @RolesAllowed(ApplicationAccessControlConfig.PERMISSION_DELETE_ORDER)
   public boolean deleteOrder(long orderId) {
 
     OrderEntity order = getOrderRepository().find(orderId);
@@ -36,6 +39,7 @@ public class UcManageOrderImpl extends AbstractOrderUc implements UcManageOrder 
   }
 
   @Override
+  @RolesAllowed(ApplicationAccessControlConfig.PERMISSION_SAVE_ORDER)
   public OrderEto saveOrder(OrderEto order) {
 
     Objects.requireNonNull(order, "order");

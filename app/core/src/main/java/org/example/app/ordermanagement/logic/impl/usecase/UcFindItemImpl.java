@@ -2,8 +2,10 @@ package org.example.app.ordermanagement.logic.impl.usecase;
 
 import java.util.Optional;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Named;
 
+import org.example.app.general.common.api.security.ApplicationAccessControlConfig;
 import org.example.app.ordermanagement.dataaccess.api.ItemEntity;
 import org.example.app.ordermanagement.logic.api.to.ItemEto;
 import org.example.app.ordermanagement.logic.api.to.ItemSearchCriteriaTo;
@@ -27,6 +29,7 @@ public class UcFindItemImpl extends AbstractItemUc implements UcFindItem {
   private static final Logger LOG = LoggerFactory.getLogger(UcFindItemImpl.class);
 
   @Override
+  @RolesAllowed(ApplicationAccessControlConfig.PERMISSION_FIND_ITEM)
   public ItemEto findItem(long id) {
 
     LOG.debug("Get Item with id {} from database.", id);
@@ -38,6 +41,7 @@ public class UcFindItemImpl extends AbstractItemUc implements UcFindItem {
   }
 
   @Override
+  @RolesAllowed(ApplicationAccessControlConfig.PERMISSION_FIND_ITEM)
   public Page<ItemEto> findItems(ItemSearchCriteriaTo criteria) {
 
     Page<ItemEntity> items = getItemRepository().findByCriteria(criteria);
