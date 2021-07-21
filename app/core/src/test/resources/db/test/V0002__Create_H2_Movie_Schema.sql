@@ -1,0 +1,16 @@
+-- This is the SQL script for setting up the DDL for the h2 database
+
+CREATE TABLE MOVIE (
+  ID                  BIGINT  NOT NULL AUTO_INCREMENT,
+  MODIFICATIONCOUNTER INTEGER NOT NULL,
+  TITLE               VARCHAR(255),
+  GENRES              VARCHAR(255),
+  YEAR                INTEGER,
+  CONSTRAINT PK_MOVIE PRIMARY KEY (ID),
+  CONSTRAINT UC_MOVIE_DUBLETTE UNIQUE (TITLE, YEAR)
+);
+
+
+
+
+
