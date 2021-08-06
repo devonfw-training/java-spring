@@ -11,43 +11,43 @@ public class Genre {
   /** Das Separator-Zeichen um Genres zu trennen. */
   public static final char SEPARATOR = '|';
 
-  /** Das Genre {@value}. */
+  /** Genre {@value}. */
   public static final String GENRE_ACTION = "Action";
 
-  /** Das Genre {@value}. */
+  /** Genre {@value}. */
   public static final String GENRE_ADVENTURE = "Adventure";
 
-  /** Das Genre {@value}. */
+  /** Genre {@value}. */
   public static final String GENRE_ANIMATION = "Animation";
 
-  /** Das Genre {@value}. */
+  /** Genre {@value}. */
   public static final String GENRE_CHILDREN = "Children";
 
-  /** Das Genre {@value}. */
+  /** Genre {@value}. */
   public static final String GENRE_COMEDY = "Comedy";
 
-  /** Das Genre {@value}. */
+  /** Genre {@value}. */
   public static final String GENRE_CRIME = "Crime";
 
-  /** Das Genre {@value}. */
+  /** Genre {@value}. */
   public static final String GENRE_DRAMA = "Drama";
 
-  /** Das Genre {@value}. */
+  /** Genre {@value}. */
   public static final String GENRE_FANTASY = "Fantasy";
 
-  /** Das Genre {@value}. */
+  /** Genre {@value}. */
   public static final String GENRE_HORROR = "Horror";
 
-  /** Das Genre {@value}. */
+  /** Genre {@value}. */
   public static final String GENRE_MYSTERY = "Mystery";
 
-  /** Das Genre {@value}. */
+  /** Genre {@value}. */
   public static final String GENRE_ROMANCE = "Romance";
 
-  /** Das Genre {@value}. */
+  /** Genre {@value}. */
   public static final String GENRE_SCI_FI = "Sci-Fi";
 
-  /** Das Genre {@value}. */
+  /** Genre {@value}. */
   public static final String GENRE_THRILLER = "Thriller";
 
   /**
