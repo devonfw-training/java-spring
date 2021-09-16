@@ -1,7 +1,13 @@
 package org.example.app.moviemanagement.common.api;
 
+import java.util.List;
+
 import org.example.app.general.common.api.ApplicationEntity;
 
+/**
+ * An entity describing a movie
+ *
+ */
 public interface Movie extends ApplicationEntity {
 
   /**
@@ -25,13 +31,13 @@ public interface Movie extends ApplicationEntity {
   public void setYear(Integer year);
 
   /**
-   * @return genresId
+   * @return Ids of the Genres
    */
-  public String getGenres();
+  public List<Genre> getGenres();
 
   /**
    * @param genres setter for genres attribute
    */
-  public void setGenres(String genres);
+  public void setGenres(List<Genre> genres);
 
 }

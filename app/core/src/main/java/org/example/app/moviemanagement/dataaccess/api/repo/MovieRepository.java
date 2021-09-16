@@ -40,7 +40,7 @@ public interface MovieRepository extends DefaultRepository<MovieEntity> {
     }
     String genres = criteria.getGenres();
     if (genres != null && !genres.isEmpty()) {
-      QueryUtil.get().whereString(query, $(alias.getGenres()), genres, criteria.getGenresOption());
+      QueryUtil.get().whereString(query, $(alias.getGenres().get(0).getName()), genres, criteria.getGenresOption());
     }
     if (criteria.getPageable() == null) {
       criteria.setPageable(PageRequest.of(0, Integer.MAX_VALUE));
@@ -81,9 +81,9 @@ public interface MovieRepository extends DefaultRepository<MovieEntity> {
             break;
           case "genres":
             if (next.isAscending()) {
-              query.orderBy($(alias.getGenres()).asc());
+              query.orderBy($(alias.getGenres().get(0).getName()).asc());
             } else {
-              query.orderBy($(alias.getGenres()).desc());
+              query.orderBy($(alias.getGenres().get(0).getName()).desc());
             }
             break;
           default:

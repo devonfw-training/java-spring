@@ -1,5 +1,8 @@
 package org.example.app.moviemanagement.logic.api.to;
 
+import java.util.List;
+
+import org.example.app.moviemanagement.common.api.Genre;
 import org.example.app.moviemanagement.common.api.Movie;
 
 import com.devonfw.module.basic.common.api.to.AbstractEto;
@@ -13,7 +16,7 @@ public class MovieEto extends AbstractEto implements Movie {
 
   private String title;
 
-  private String genres;
+  private List<Genre> genres;
 
   private Integer year;
 
@@ -30,13 +33,13 @@ public class MovieEto extends AbstractEto implements Movie {
   }
 
   @Override
-  public String getGenres() {
+  public List<Genre> getGenres() {
 
     return this.genres;
   }
 
   @Override
-  public void setGenres(String genres) {
+  public void setGenres(List<Genre> genres) {
 
     this.genres = genres;
   }
@@ -44,7 +47,7 @@ public class MovieEto extends AbstractEto implements Movie {
   @Override
   public Integer getYear() {
 
-    return year;
+    return this.year;
   }
 
   @Override
