@@ -1,18 +1,24 @@
 package org.example.app.general.common.impl.config;
 
+import java.util.Arrays;
+
+import javax.inject.Inject;
+
+import org.example.app.general.service.impl.config.BaseWebSecurityConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import org.example.app.general.service.impl.config.BaseWebSecurityConfig;
 import com.devonfw.module.basic.common.api.config.SpringProfileConstants;
 
 /**
@@ -22,7 +28,11 @@ import com.devonfw.module.basic.common.api.config.SpringProfileConstants;
 @EnableWebSecurity
 @Profile(SpringProfileConstants.JUNIT)
 public class TestWebSecurityConfig extends BaseWebSecurityConfig {
+
   private static Logger LOG = LoggerFactory.getLogger(TestWebSecurityConfig.class);
+
+  @Inject
+  private PasswordEncoder passwordEncoder;
 
   /**
    * Configure spring security to enable a simple webform-login + a simple rest login.
@@ -46,9 +56,18 @@ public class TestWebSecurityConfig extends BaseWebSecurityConfig {
   protected BasicAuthenticationFilter basicAuthenticationFilter() throws Exception {
 
     AuthenticationEntryPoint authenticationEntryPoint = new BasicAuthenticationEntryPoint();
-    BasicAuthenticationFilter basicAuthenticationFilter =
-        new BasicAuthenticationFilter(authenticationManagerBean(), authenticationEntryPoint);
+    BasicAuthenticationFilter basicAuthenticationFilter = new BasicAuthenticationFilter(authenticationManagerBean(),
+        authenticationEntryPoint);
     return basicAuthenticationFilter;
+  }
+
+  @Override
+  @Inject
+  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+
+    auth.inMemoryAuthentication().withUser("app.Admin").password(this.passwordEncoder.encode("admin"))
+        .authorities(Arrays.asList()); // authorities are loaded/defined in
+                                       // org.example.app.general.common.impl.security.BaseUserDetailsService
   }
 
 }
