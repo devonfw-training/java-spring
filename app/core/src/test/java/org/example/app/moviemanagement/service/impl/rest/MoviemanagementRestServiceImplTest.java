@@ -79,6 +79,6 @@ class MoviemanagementRestServiceImplTest extends RestServiceTest {
   private <T> T createServiceInterfaceWithAuth(Class<T> serviceInterface) {
 
     return getServiceClientFactory().create(serviceInterface, new ServiceClientConfigBuilder().host("localhost")
-        .authBasic().userLogin("app.Admin").userPassword("admin").buildMap());
+        .authBasic().userLogin("admin").userPassword("admin").buildMap());
   }
 }
