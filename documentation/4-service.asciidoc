@@ -81,5 +81,14 @@ At the first look this appears to be the same as our test of the use-case or rep
 However, technically here a full server with HTTP stack is started within JUnit.
 The JUnit test itself invokes the server via HTTP GET request and de-serializes the JSON from the server response back to `OrderEto`. Besides authentication and all such aspects are also tested.
 
+To make this work you need to ensure you have a proper service client implementation available. Therefore add the following dependency to `core/pom.xml`:
+[source,java]
+----
+<dependency>
+  <groupId>com.devonfw.java.starters</groupId>
+  <artifactId>devon4j-starter-cxf-client-rest</artifactId>
+</dependency>
+----
+
 The same infrastructure with `ServiceClientFactory` can also be used for microservices.
 
