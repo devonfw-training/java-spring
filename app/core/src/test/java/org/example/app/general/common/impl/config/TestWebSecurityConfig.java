@@ -61,13 +61,4 @@ public class TestWebSecurityConfig extends BaseWebSecurityConfig {
     return basicAuthenticationFilter;
   }
 
-  @Override
-  @Inject
-  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
-    auth.inMemoryAuthentication().withUser("app.Admin").password(this.passwordEncoder.encode("admin"))
-        .authorities(Arrays.asList()); // authorities are loaded/defined in
-                                       // org.example.app.general.common.impl.security.BaseUserDetailsService
-  }
-
 }
