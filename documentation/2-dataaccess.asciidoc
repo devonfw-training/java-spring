@@ -144,6 +144,10 @@ spring.h2.console.enabled=true
 * Now start your server and go to _http://localhost:8081/h2-console_. If this gives you an 403 or 404, you might have set a value for `server.servlet.context-path` in your `application.properties`. Than you have to put it in the URL as path prefix.
 * You should now see a login screen for the H2-console. If you are asked to login in our app, just do it as usual, but afterwards you should be routed to the h2-console. In the login screen of the H2-console set the value of JDBC URL to the value of `spring.datasource.url` from before. Leave the user name as `sa` and the password empty.
 
+== Extra assignment
+
+Extend the OrderRepository with a search for orders by price (lower/greater) and state (equal). Theses values should be variable parameters, so a dynamic query is suggested. Add test data and test for the repositories.
+
 == Links
 
 * https://github.com/devonfw/devon4j/blob/develop/documentation/guide-jpa.asciidoc#java-persistence-api[devon4j:JPA]
